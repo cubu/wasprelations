@@ -1,12 +1,12 @@
 import { Task } from 'wasp/entities'
-import { UpdateTask } from 'wasp/server/operations'
+import { MarkTaskAsDone } from 'wasp/server/operations'
 
 type MarkTaskAsDonePayload = {
   id: string,
   isDone: boolean
 }
 
-export const markTaskAsDone: UpdateTask<MarkTaskAsDonePayload, Task> = async (
+export const markTaskAsDone: MarkTaskAsDone<MarkTaskAsDonePayload, Task> = async (
   { id, isDone },
   context
 ) => {

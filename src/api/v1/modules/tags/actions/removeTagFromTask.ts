@@ -1,12 +1,12 @@
-import { Task, Tag } from 'wasp/entities' // Import both Task and Tag entities
-import { UpdateTask } from 'wasp/server/operations'
+import { Task } from 'wasp/entities'
+import { RemoveTagFromTask } from 'wasp/server/operations'
 
 type RemoveTagFromTaskPayload = {
   taskId: string
   tagId: string
 }
 
-export const removeTagFromTask: UpdateTask<RemoveTagFromTaskPayload, Task> = async (
+export const removeTagFromTask: RemoveTagFromTask<RemoveTagFromTaskPayload, Task> = async (
   { taskId, tagId },
   context
 ) => {

@@ -1,12 +1,12 @@
-import { Task, Tag } from 'wasp/entities' // Import both Task and Tag entities
-import { UpdateTask } from 'wasp/server/operations'
+import { Task } from 'wasp/entities'
+import { AssignTagToTask } from 'wasp/server/operations'
 
 type AssignTagToTaskPayload = {
   taskId: string
   tagId: string
 }
 
-export const assignTagToTask: UpdateTask<AssignTagToTaskPayload, Task> = async (
+export const assignTagToTask: AssignTagToTask<AssignTagToTaskPayload, Task> = async (
   { taskId, tagId },
   context
 ) => {
