@@ -109,11 +109,11 @@ action deleteTag {
 
 action assignTagToTask {
   fn: import { assignTagToTask } from "@src/api/v1/modules/tags/actions/assignTagToTask",
-  entities: [Task, Tag]  // Ensure both Task and Tag are here
+  entities: [Task]
 }
 
 action removeTagFromTask {
   fn: import { removeTagFromTask } from "@src/api/v1/modules/tags/actions/removeTagFromTask",
-  entities: [Task, Tag]  // Ensure both Task and Tag are here
+  entities: [Task]
 }
  
