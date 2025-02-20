@@ -84,12 +84,12 @@ query getTags {
 
 query getTagsForTask {
   fn: import { getTagsForTask } from "@src/api/v1/modules/tags/queries/getTagsForTask",
-  entities: [Task, Tag]  // Ensure both Task and Tag are here
+  entities: [Tag]
 }
 
 query getTasksForTag {
   fn: import { getTasksForTag } from "@src/api/v1/modules/tags/queries/getTasksForTag",
-  entities: [Tag, Task]  // Ensure both Tag and Task are here
+  entities: [Task]
 }
 
 action createTag {
