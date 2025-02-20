@@ -1,0 +1,119 @@
+app apic01 {
+  wasp: {
+    version: "^0.15.2"
+  },
+  title: "apic01"
+}
+
+route RootRoute { path: "/", to: HomePage }
+page HomePage {
+  component: import { MainPage } from "@src/pages/home/MainPage"
+}
+
+route TaskRoute { path: "/tasks", to: TaskPage }
+page TaskPage {
+  component: import { TaskPage } from "@src/pages/tasks/TaskPage"
+}
+
+route TaskDetailsRoute { path: "/tasks/:taskId", to: TaskDetailsPage }
+page TaskDetailsPage {
+  component: import { TaskDetailsPage } from "@src/pages/tasks/TaskDetailsPage"
+}
+
+query getTasks {
+  fn: import { getTasks } from "@src/api/v1/modules/tasks/queries/getTasks",
+  entities: [Task]
+}
+
+query getFilteredTasks {
+  fn: import { getFilteredTasks } from "@src/api/v1/modules/tasks/queries/getFilteredTasks",
+  entities: [Task]
+}
+
+query getTaskById {
+  fn: import { getTaskById } from "@src/api/v1/modules/tasks/queries/getTaskById",
+  entities: [Task]
+}
+
+action createTask {
+  fn: import { createTask } from "@src/api/v1/modules/tasks/actions/createTask",
+  entities: [Task]
+}
+
+action updateTask {
+  fn: import { updateTask } from "@src/api/v1/modules/tasks/actions/updateTask",
+  entities: [Task]
+}
+
+action markTaskAsDone {
+  fn: import { markTaskAsDone } from "@src/api/v1/modules/tasks/actions/markTaskAsDone",
+  entities: [Task]
+}
+
+action deleteTask {
+  fn: import { deleteTask } from "@src/api/v1/modules/tasks/actions/deleteTask",
+  entities: [Task, Subtask] // Ensure both Task and Subtask are here
+}
+
+// Subtasks related actions & queries
+query getSubtasks {
+  fn: import { getSubtasks } from "@src/api/v1/modules/tasks/queries/getSubtasks",
+  entities: [Subtask]
+}
+
+action createSubtask {
+  fn: import { createSubtask } from "@src/api/v1/modules/tasks/actions/createSubtask",
+  entities: [Subtask]
+}
+
+action updateSubtask {
+  fn: import { updateSubtask } from "@src/api/v1/modules/tasks/actions/updateSubtask",
+  entities: [Subtask]
+}
+
+action deleteSubtask {
+  fn: import { deleteSubtask } from "@src/api/v1/modules/tasks/actions/deleteSubtask",
+  entities: [Subtask]
+}
+
+// Tags related actions & queries
+query getTags {
+  fn: import { getTags } from "@src/api/v1/modules/tags/queries/getTags",
+  entities: [Tag] // Add Tag here
+}
+
+query getTagsForTask {
+  fn: import { getTagsForTask } from "@src/api/v1/modules/tags/queries/getTagsForTask",
+  entities: [Task, Tag]  // Ensure both Task and Tag are here
+}
+
+query getTasksForTag {
+  fn: import { getTasksForTag } from "@src/api/v1/modules/tags/queries/getTasksForTag",
+  entities: [Tag, Task]  // Ensure both Tag and Task are here
+}
+
+action createTag {
+  fn: import { createTag } from "@src/api/v1/modules/tags/actions/createTag",
+  entities: [Tag]
+}
+
+action updateTag {
+  fn: import { updateTag } from "@src/api/v1/modules/tags/actions/updateTag",
+  entities: [Tag]
+}
+
+action deleteTag {
+  fn: import { deleteTag } from "@src/api/v1/modules/tags/actions/deleteTag",
+  entities: [Tag]
+}
+
+action assignTagToTask {
+  fn: import { assignTagToTask } from "@src/api/v1/modules/tags/actions/assignTagToTask",
+  entities: [Task, Tag]  // Ensure both Task and Tag are here
+}
+
+action removeTagFromTask {
+  fn: import { removeTagFromTask } from "@src/api/v1/modules/tags/actions/removeTagFromTask",
+  entities: [Task, Tag]  // Ensure both Task and Tag are here
+}
+ 

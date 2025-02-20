@@ -1,0 +1,32 @@
+datasource db {
+  provider = "postgresql"
+  // Wasp requires that the url is set to the DATABASE_URL environment variable.
+  url      = env("DATABASE_URL")
+}
+
+// Wasp requires the `prisma-client-js` generator to be present.
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Task {
+  id          String     @id  @default(cuid())
+  description String
+  isDone      Boolean    @default(false)
+  subtasks    Subtask[]  // A task can have multiple subtasks
+  tags        Tag[]    @relation("TaskTags")  // Many-to-many relation with Tag
+}
+
+model Subtask {
+  id        String  @id  @default(cuid())
+  description String
+  isDone    Boolean @default(false)
+  taskId    String
+  task      Task    @relation(fields: [taskId], references: [id]) // A subtask belongs to a task
+}
+
+model Tag {
+  id        String   @id  @default(cuid())
+  name      String
+  tasks     Task[]   @relation("TaskTags") // Many-to-many relation with Task
+}
